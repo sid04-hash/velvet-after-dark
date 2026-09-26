@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velvet After Dark</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+:root{--black:#090609;--wine:#210912;--burgundy:#390d1b;--crimson:#8f1834;--gold:#c8a66a;--ivory:#f5eadc;--muted:#c6b3b0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ivory);font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse at 12% 8%,#63132666,transparent 36%),radial-gradient(ellipse at 90% 45%,#8a1a3428,transparent 34%),linear-gradient(145deg,#080608,#1b0710 52%,#080608);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.14;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");z-index:1}
+.embers{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.ember{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:#d99c55;box-shadow:0 0 10px #d54a43;animation:drift linear infinite;opacity:0}
+.float-romance{position:absolute;bottom:-12vh;user-select:none;will-change:transform,opacity;filter:drop-shadow(0 0 10px #a51c3a55);animation:romanceRise linear infinite;opacity:0}
+.float-romance.heart{color:#ff315b;font-size:clamp(28px,4vw,48px);font-weight:900;-webkit-text-stroke:.5px #ff9aaa;text-shadow:0 0 8px #ff244f,0 0 22px #d10b3d,0 0 42px #9e092e;}
+.float-romance.kiss{font-size:clamp(30px,4.2vw,50px);filter:drop-shadow(0 0 8px #ff244f) drop-shadow(0 0 20px #d10b3d);}
+@keyframes romanceRise{0%{transform:translate3d(0,0,0) rotate(-12deg) scale(.72);opacity:0}12%{opacity:.75}45%{transform:translate3d(28px,-48vh,0) rotate(10deg) scale(1)}78%{opacity:.5}100%{transform:translate3d(-22px,-118vh,0) rotate(-10deg) scale(1.12);opacity:0}}
+@keyframes drift{0%{transform:translateY(0) translateX(0);opacity:0}15%{opacity:.65}80%{opacity:.35}100%{transform:translateY(-110vh) translateX(45px);opacity:0}}
+.wrap{position:relative;z-index:2;width:min(900px,92%);margin:auto;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:54px 0}
+.card{position:relative;width:100%;padding:clamp(28px,6vw,58px);border:1px solid #c8a66a55;border-radius:34px;background:linear-gradient(145deg,#ffffff12,#7b1a321c);box-shadow:0 20px 80px #0009,0 0 45px #8f18341f,inset 0 1px #ffffff24;backdrop-filter:blur(18px);overflow:hidden;animation:enter 1.8s ease both}
+.card:before{content:"";position:absolute;inset:-30%;background:radial-gradient(ellipse at center,#9b1a3220,transparent 58%);animation:heartbeat 8s ease-in-out infinite;pointer-events:none}
+@keyframes heartbeat{0%,100%{opacity:.35;transform:scale(.94)}50%{opacity:.8;transform:scale(1.04)}}
+@keyframes enter{from{opacity:0;transform:translateY(16px) scale(.985);filter:brightness(.3)}to{opacity:1;transform:none;filter:brightness(1)}}
+.content{position:relative;z-index:1}
+.eyebrow{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.03;letter-spacing:.025em;margin:0 0 22px}
+h1{font-size:clamp(3rem,9vw,6.5rem);color:#fff4e9;text-shadow:0 0 28px #a51c3a2a}
+h2{font-size:clamp(2.2rem,6vw,4rem);color:#f7e9dc}
+p{color:#dfd0cb;line-height:1.85;font-size:1rem}
+.lead{max-width:590px;margin:0 auto 28px;color:#e9d9d1}
+.rule{width:70px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:24px auto}
+.buttons{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+button{font:600 .88rem 'DM Sans',sans-serif;letter-spacing:.03em;padding:14px 21px;margin:7px;color:#fff0e8;background:linear-gradient(135deg,#541126 0%,#8e1b39 58%,#5c1028 100%);border:1px solid #b94b5f88;border-radius:999px;cursor:pointer;box-shadow:0 8px 22px #6f173638;transition:transform .35s,background .35s,border-color .35s,box-shadow .35s}
+button:hover{transform:translateY(-3px) scale(1.035);background:linear-gradient(135deg,#7d1a35,#b12c4b 58%,#7a1834);border-color:#d5b477;box-shadow:0 12px 28px #9f1c3c55,0 0 0 4px #c8a66a18}
+button.gold{background:linear-gradient(135deg,#f1d8a5,#c8a66a 58%,#a77b43);border-color:#f1d8a5;color:#281018;box-shadow:0 8px 24px #c8a66a33}
+button.ghost{border-color:#b58a7566;background:linear-gradient(135deg,#ffffff10,#7a1a3018);color:#e5d1c8;box-shadow:none}
+.screen{display:none;animation:fade .75s ease both}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.letter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px;margin-top:30px}
+.letter-choice{padding:20px;text-align:left;min-height:95px;text-transform:none;letter-spacing:.03em;font-size:.95rem}
+.letter-choice span{display:block;color:var(--gold);font-size:.65rem;letter-spacing:.2em;margin-bottom:9px}
+.write-panel{margin:25px 0;padding:24px;border:1px solid #b38a5855;background:linear-gradient(135deg,#260a15dd,#190810dd);box-shadow:inset 0 0 35px #9c1e3214}
+.letter-copy{color:#f2e5dc;font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left;min-height:300px}
+@media(max-width:520px){.letter-copy{min-height:250px}}
+
+textarea{width:100%;min-height:300px;resize:vertical;background:#0e070b88;color:#f2e5dc;border:1px solid #a36c5b66;padding:20px;font:1rem/1.8 'Cormorant Garamond',serif;font-size:1.2rem;outline:none}
+textarea:focus{border-color:#c8a66a;box-shadow:0 0 0 1px #c8a66a22}
+textarea::placeholder{color:#9d8587}
+.small{font-size:.78rem;color:#a99192}
+.back{position:fixed;top:18px;left:18px;z-index:5;display:none}
+.back.show{display:block}
+footer{margin-top:30px;color:#92767d;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase}
+@media(max-width:520px){.wrap{width:94%;padding:70px 0 28px}.card{padding:27px 19px}.letter-grid{grid-template-columns:1fr}textarea{min-height:250px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<button class="back" id="back" onclick="goBack()">← Return</button>
+<div class="embers" aria-hidden="true" id="embers"></div><div class="embers" aria-hidden="true" id="romance"></div>
+<main class="wrap"><div class="card"><div class="content">
+<section class="screen active" id="home">
+<div class="eyebrow">A collection of words · just for you · very risky</div>
+<h1>Velvet After Dark</h1>
+<div class="rule"></div>
+<p class="lead">Some feelings that couldn't be ignored, written softly, in the quiet, when the world softens and only the words remain.</p>
+<p class="small">Are you ready! Really risky!</p>
+<div class="buttons"><button class="gold" onclick="showLetters()">Enter the collection</button></div>
+
+</section>
+<section class="screen" id="letters">
+<div class="eyebrow">The collection</div><h2>Choose a letter</h2>
+<p>Each page is its own quiet and soft love space.</p>
+<div class="letter-grid">
+<button class="letter-choice" onclick="openLetter(1)"><span>LETTER I</span>The First Spark</button>
+<button class="letter-choice" onclick="openLetter(2)"><span>LETTER II</span>When We Are Alone</button>
+<button class="letter-choice" onclick="openLetter(3)"><span>LETTER III</span>Things I Would Whisper</button>
+<button class="letter-choice" onclick="openLetter(4)"><span>LETTER IV</span>Uff My Imagination</button>
+<button class="letter-choice" onclick="openLetter(5)"><span>LETTER V</span>A Promise I Wanna Keep</button>
+<button class="letter-choice" onclick="openLetter(6)"><span>LETTER VI</span>Just For You, My love</button>
+</div>
+<div class="buttons"><button class="ghost" onclick="goHome()">Home</button></div>
+</section>
+<div id="letterScreens"></div>
+</div></div></main>
+<script>
+const titles=['The First Spark','When We Are Alone','Things I Would Whisper','Uff My Imagination','A Promise I Wanna Keep','Just For You, My love'];
+
+// EDIT YOUR LETTERS HERE. Each message is shown on the page opened by its matching button.
+// Keep the backticks and commas. Blank lines create paragraph breaks.
+const messages=[
+  `The first spark, more like the first meet. When we meet first have a look at each other from far waving hands smiling wide as we approach each other, a hug, which feels like forever. Maybe we hold hands or maybe we too hesitant a cafe which we decided I pull the chair for you then have my seat we difinitely order a good coffee two diff ones which we share and I hope you like mine better. And maybe pasta noodles or momo or something else. I want to let you have the first sip from my coffee and the first bite from my food with my hands being shy I know we both will be a little. We will be talking about how we got here like taking metro or cab or auto then walked to this place. We finish the food time passes wothout knowing, then we exit the cafe walk around finding an ice cream shop and I really want to buy one strawberry and chocolate ice cream, and yet again I want you to have the first bit of it and hopefully your face lits up and the peace it would bring to me like the whole world at once side and that peace on the other. Hopefully we find a place to watch sunset and yet again being hesitant I keep my hands around your shoulder and slowly as time passes watching susnset maybe my hands will be around you waist, it would feel like holding the whole world in my arms, before leaving I would leave soft forehead kiss and kiss your cheeks cause how can I not ufff the cuteness and how pretty you are maybe you look in my eyes we hold that eye contact and not resist for a soft lip kiss. Then we say bye not wanting to leave still findind excuses to stay more holding hands as we wait for cab, I would wait for your cab to come first or maybe I come along then after dropping you I book my cab and go looking back at the palce you dropped off. Waving bye from the inside... `,
+  `When we are alone umm... the alone time maybe in my room where I can show you all each corner every shelf every item that I have, everything like a baby showing off his toys, all with excitement and joy pulling your hands idhr aao ye dekho wo dekho sab dekho, and your hands going through my stuffs looking at it asking about it. Yes I will have plans where we prepare something good to eat watching a recipe hopwing it to be tasty I make a coffee for you all by myself while you watch then have a sip and with excitement you say its good and ask me to take a sip I mean yes a couple of sips rest all is yours completely yours. We share the food we prepared in the same plate and yes I want to feed you the first bite and a few more in between. We play something on TV well I would want to watch FRIENDS with you, after finishing the meal n coffee we stay on couch maybe doze off with you in my arms and a light blanket to cover you. You stay comfy in my arms and I doze off in that confort as well gently patting your shoulder or head or gently rubbing your back and hopefully when we wake up I am still holding you I dont care if my hands are numb you can hold it or rub my arms till it feels fine. Can we play a romantic song and dance a little! Uff the way I would be adoring you, hold your hands and kiss your palm then take your both hands and you hold my face cupping it. The soft lovely evening passes with warmth and many more spontaneous things which comes and we have no idea of....`,
+  `Even I have no idea of things that your presence can make me whisper to you.... I'll be saying things that comes to my mind wothout thinking. Well I'm already dying to whisper I Love you Jaaannnuuuu being close to you ears, be cute in a baby voice sayy Aaaalluubbuuu, playfully say I Lobster You, watch you smile, the prettiest girl, her bright nasheeli eyes drwons me more in love, I would pick you up take a couple of circles round n round giggling and laughing you hold my shoulders while I life you, and when I put you down I couldn't resist to kiss maybe softly then maybe a long kiss then say I Love You again I can say it a thousand times the roots of love for you in my heart grows deeper ever moment, You Complete Me in ways I can't explain. You Really Really Complete Me, Meriii Jaaannnnn, Jaaannuuuuuu, My Darling, My Patli Kamar, My Love, My Peace, My Madam ji, My Everything, My Sukooonnn, My World, I sleep dreaming of you and wake up with you thought even my subconscious mind thinks of you how do i explain how much my heart and my conscious mind thinks of you, you live rentfree in me and I absolutely Love it. My words always falls short even right now my mind wanna speak soo much but I am running out of words I feel like Sid it nothing if not always running out of words. I Love You Meriii Jaaannnnn. You turn me into a baby so many times and you make me wanna do thing I never imagined of. Why am I running out of words Just know that I have more it just comes out at different times, you know na how randomly I speak of things that we both don't expect. `,
+  `It's risky I can't stop myself from imagining the intimacy you know this part is the last one I am writing I wrote all other five previously, there's just something to the closeness how do I stop myself from writing and imagining. I wanna do it all slow and intense the moement after we close the door and shut the curtains, I want to pin you against the wall hold both your hands up while getting closer as we share the same breath kiss your lips locking into mine trying to maintain the eye contact yet something makes us close our eyes with my other hand I hold you waist kissing you deep pulling you closer and finally let go of your hands while my hands starts exploring your body sliding under clothes trying to grab your body, I kiss your neck licking it a little as I start to undress you slowly kissing and sucking you all over your neck, chest, boobs, your belly, waist and make you lay in bed while I remove your pants gently kissing your feelt and legs as I reach your inner thighs kissing it hard and start exploring your pussy with my tongue while you grab my hair and crush my head between your thighs i push my tongue inside your pussy and rub your clit with my fingers make you reach your peak and squirt all over my face jaaannuuuuu, then I come back on top kissing you being a little high while you feel my dick being hard rubbing against your belly as we grow impatient I rub my dripping cock over your pussy and slide it inside gently, I start going in and out slow deep thrusts and a few hard thrusts the struggle grows I start sucking your one boob while pressing the other my tongue circling you nipple and suck it hard being needy for your milk mommyy, at times kiss you neck and deep kiss your lips fucking hard moaning in your ears and hear your soulful grunts and moans echoing all around the room and a deep moan as we cum, you pussy has my cum drippind out of it I'll wipe it with my cock and make you lick it off come up make you grab my cock you play with mt soft cock and it grows hard in your hands by your touch and soon you kiss the tip all over my cock and suck it like a lollipop I make you take it deep till it reaches your throat and fill your mouth with my cum, pull it out apply the last drop over your lips then come beside you say you softly I Love You Meri Jaaaannn hold you close make sure you feel loved while we fucked and loved after we fuck I tuck your hair behind your ear hold you give forehead kiss we share a soft kiss before we rest under the blanket where nothing exists between us. But but but I sooo soo sooo much wanna be the person who would help you dress your up after we wake up help you clean yourself hold the towel while I wait outside the washroom and untangle your clothes help you wear it like a baby like my baby, I wanna help you with your hair and a light makeup I hope all you see in my eyes is love and affection for you I can't explain how much more intimate it is in my mind to help you dress up after I undressed you with the same passion. All for My Love My Jaaannn My Darling ! `,
+  `Braiding your hair with love neither too toght nor too loose, sirr dabana whenever you say you have a headache, many many morning coffeeee, not failing with good morning and good night wishes, and ramdom cards made with love and a lot of warmth, can't stop adoring you and dying to see n hear you, my admiration for you multiplies by infinity the moment I imagine you in pink glittery glittery saree. Depths of my love is unimaginable even for me, I wanna make you feel the same warmth,I promise to massage your hands or legs when you are tired massage your head make you forget the stress, hold you in my arms make you come on top of me rub your back everyday and amke sure you sleep before me and I can easily sleep watching you doze off in peace, I want to share every bit of me, my day, my nights, my happy times and my sad times, share so much that you feel like we both lived the same day, ek taraf moon aur dusre taraf tum i swear my eyes won't look at the moon I would better look at moon in the reflestion of your eyes, I wanna make you feel special and make you feel so so so much special that you cry with joy haaaaa roo that's the only way I wanna make you cry. I don't wanna leave you alone, I wanna be there everytime. Promise to keep irritating and teasing you in a cute way, tang kr doon madam ji ko poora phir tum gussa ho jao toh sorry madam ji sorryyyy madammm jiii krke mana loon, I promise to persuade you everytime I make you mad or sad, promise to clear all misunderstandings, promise to share all my problems the smallest of thing which starts bugging me and allow you to help you solve it. I promise to share so many more things that made me trun into someone even I couldn't recognize. I promise you unlimited I Love You and affirmations and efforts and everything more than everything.... Yes and one more thing one really big thing that will make many more things happen is we work on our career we be the motivation for each other share what we did to be productive and really get better to achieve what we want to and never stop seeing a future cause I do at this point I really do see things might happen. I want to start with some workout and show you my progress little by little. I want to make these cards like things for every few days or whenever I feel it to I want to write no amount or words can equal what I want to do.`,
+  `I would happily go through the bushes just to pluck that one blooming flower for you wihtout you asking for it, I wanna search for flowers and send it to you in chat or pustire of flowers from a tree, I want to but a small spaling nututre it and give it to you, you keep it take care of it and show me when the flowers bloom. I want to bring unexpected chocolates and flowers for you sometimes a bouquet but a few flowers which I pick carries more feelings I want to pick a few and bring it for you, I want to pamper you when you are on our periods and yes I will tease you saying your favourite watermelon juice season is back but smile stupidly when you scold me or get mad, I want to bring chips chololates flovers and hear your tantrums during these days. Well I wanna hear it all everyday nonstop, if i do something wrong I wanna say Sorryy in cute cute baby voice a hundred times, I would hold your ears and doo stand ups and sit down saying sorry and you smile or daat ke bol do ki apna kaan pakad ke bolo sorry and I do that as well. Rndomly when I expect your coming I want to lay a bed of rose petals from the door to everywhere where you hold my hand and walk in bare feet over the petals. I want to share each hour of my lief what all I did like a baby I'm cute naaa I can do anything haaaa sab kr sakta you make me feel cute and I can't stop adoring you, kissing the screen when on a call and smile like a silly person when on call or texting, Just for you my hearts makes me do silly things just to see you smile just to know you smiled cause of me. You are my everything I'm happiest with you never been happier in my life. And that thing I said I really want to I just want to you in white or red or pink sparkly sparkly saree little makeup hairs open and me with aarti ki thaali with diya and sweet and tilak I really want to worship you, you just stand there I do the thaali aise gol gol then tilak and feed you that motichoor ka laddu keep the plate aside and bend down for blessing I touch your feet bend down completely and you keep your hand on my back and bless me with whatever comes in your mind! My Goddess of Happiness Home Joy Motivation Strength Prosperity! `
+];
+
+const host=document.getElementById('letterScreens');
+titles.forEach((title,i)=>{
+  const n=i+1, section=document.createElement('section');
+  section.className='screen';section.id='letter'+n;
+  section.innerHTML=`
+    <div class="eyebrow">Letter ${String(n).padStart(2,'0')} · Velvet After Dark</div>
+    <h2>${title}</h2>
+    <div class="rule"></div>
+    <!--<p class="small">Take your time. These words are just for you.</p>-->
+    <div class="write-panel"><div class="letter-copy"></div></div>
+    <div class="buttons">
+      <button class="ghost" onclick="showLetters()">All letters</button>
+      <button class="gold" onclick="goHome()">Return home</button>
+    </div>`;
+  // Display each permanent message, preserving paragraph breaks.
+  section.querySelector('.letter-copy').textContent=messages[i];
+  host.appendChild(section);
+});
+let current='home', history=[];
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');current=id;document.getElementById('back').classList.toggle('show',id!=='home');window.scrollTo({top:0,behavior:'smooth'});}
+function showLetters(){history.push(current);show('letters')}
+function openLetter(n){history.push(current);show('letter'+n)}
+function goHome(){history=[];show('home')}
+function goBack(){show(history.pop()||'home')}
+for(let i=0;i<36;i++){const e=document.createElement('i');e.className='ember';e.style.left=(Math.random()*100)+'%';e.style.animationDuration=(12+Math.random()*18)+'s';e.style.animationDelay=(-Math.random()*25)+'s';e.style.width=e.style.height=(1+Math.random()*2.5)+'px';document.getElementById('embers').appendChild(e)}
+const romance=document.getElementById('romance');
+for(let i=0;i<22;i++){
+ const f=document.createElement('span');
+ const kiss=i%3===0;
+ f.className='float-romance '+(kiss?'kiss':'heart');
+ f.textContent=kiss?'💋':(i%3===0?'♥':'♡');
+ f.style.left=(Math.random()*100)+'%';
+ f.style.animationDuration=(17+Math.random()*18)+'s';
+ f.style.animationDelay=(-Math.random()*30)+'s';
+ f.style.fontSize=(kiss?30+Math.random()*20:28+Math.random()*24)+'px';
+ romance.appendChild(f);
+}
+</script>
+</body></html>
